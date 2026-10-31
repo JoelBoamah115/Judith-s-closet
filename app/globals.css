@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8F5F0;
+  --foreground: #25211F;
+  --primary: #641526;
+  --primary-foreground: #FFFFFF;
+  --accent: #E8DFD2;
+  --muted: #80664E;
+
+  --color-espresso: #25211F;
+  --color-espresso-dark: #191615;
+  --color-espresso-light: #3A3432;
+  --color-champagne: #E8DFD2;
+  --color-champagne-light: #F4EFE7;
+  --color-ivory: #F8F5F0;
+  --color-ivory-warm: #FAF8F5;
+  --color-mocha: #80664E;
+  --color-mocha-light: #A58970;
+  --color-burgundy: #641526;
+  --color-burgundy-dark: #4E101D;
+  --color-burgundy-light: #7E1B31;
+  --color-gold: #C5A059;
+  --color-gold-light: #DFBF7D;
+
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom selection */
+::selection {
+  background-color: #641526;
+  color: #F8F5F0;
+}
+
+/* Luxury scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EFE7;
+}
+::-webkit-scrollbar-thumb {
+  background: #80664E;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #641526;
+}
+
+/* Explicit position helpers to ensure Next.js Image fill containers never default to static */
+.relative {
+  position: relative !important;
+}
+.absolute {
+  position: absolute !important;
+}
+.fixed {
+  position: fixed !important;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(248, 245, 240, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 223, 210, 0.6);
+}
+
+.glass-panel-dark {
+  background: rgba(37, 33, 31, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Luxury typography styles */
+.font-display {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Subtle image zoom on hover container */
+.img-zoom-wrapper {
+  overflow: hidden;
+}
+.img-zoom-wrapper img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom-wrapper:hover img {
+  transform: scale(1.06);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.2s infinite;
+}
