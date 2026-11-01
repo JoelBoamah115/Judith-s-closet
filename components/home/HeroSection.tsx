@@ -289,7 +289,7 @@ export function HeroSection() {
                 ease: "easeOut",
                 delay: prefersReducedMotion ? 0 : 0.52,
               }}
-              className="pt-4 flex items-center gap-4 text-xs jc-hero-whatsapp-row"
+              className="pt-3 md:pt-4 flex items-center gap-4 text-xs jc-hero-whatsapp-row"
             >
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
@@ -399,7 +399,15 @@ export function HeroSection() {
         .jc-hero-body { color: rgba(255,255,255,0.85); }
 
         /* ── WhatsApp row ── */
-        .jc-hero-whatsapp-row  { border-top: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.80); }
+        .jc-hero-whatsapp-row  {
+          border-top: none;
+          color: rgba(255,255,255,0.80);
+        }
+        @media (min-width: 768px) {
+          .jc-hero-whatsapp-row {
+            border-top: 1px solid rgba(255,255,255,0.25);
+          }
+        }
         .jc-hero-whatsapp-text { color: rgba(255,255,255,0.80); }
         .jc-hero-whatsapp-link { color: #F2C4CE; }
 
