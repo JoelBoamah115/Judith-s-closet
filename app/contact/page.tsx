@@ -75,10 +75,19 @@ export default function ContactPage() {
                 href={WHATSAPP_BASE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-2xl text-white text-xs font-bold uppercase tracking-widest shadow-md transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D] jc-whatsapp-btn"
+                className="w-full min-h-[48px] py-3.5 px-4 rounded-2xl text-white shadow-md transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D] flex flex-col items-center justify-center text-center gap-1 jc-whatsapp-btn"
+                style={{ minHeight: "48px" }}
               >
-                <MessageCircle className="w-5 h-5" />
-                <span>Open WhatsApp Now: {WHATSAPP_DISPLAY_NUMBER}</span>
+                <span className="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest">
+                  <MessageCircle className="w-[22px] h-[22px] flex-shrink-0" style={{ width: "22px", height: "22px" }} />
+                  <span>OPEN WHATSAPP</span>
+                </span>
+                <span
+                  className="text-xs sm:text-sm font-semibold tracking-wider"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                  {WHATSAPP_DISPLAY_NUMBER}
+                </span>
               </a>
 
               <style>{`
