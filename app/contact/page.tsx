@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MessageCircle, Phone, MapPin, Mail, Clock, Send, ArrowRight } from "lucide-react";
-import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY_NUMBER, createGeneralInquiryWhatsAppUrl } from "@/lib/whatsapp";
+import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY_NUMBER, WHATSAPP_PHONE_NUMBER, createGeneralInquiryWhatsAppUrl } from "@/lib/whatsapp";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -12,7 +12,7 @@ export default function ContactPage() {
   const handleWhatsAppSend = (e: React.FormEvent) => {
     e.preventDefault();
     const formatted = `Hello Judith's Closet! My name is ${name || "a customer"}.\nTopic: ${topic}\nMessage: ${message || "I would like to inquire about your collections."}`;
-    const url = `https://wa.me/233547631900?text=${encodeURIComponent(formatted)}`;
+    const url = `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(formatted)}`;
     window.open(url, "_blank");
   };
 
@@ -70,56 +70,43 @@ export default function ContactPage() {
                 Our fastest channel for order placements, size confirmations, and immediate stock checks.
               </p>
 
-              {/* CTA button — new layout: icon circle | two-line text | arrow */}
+              {/* CTA button — Icon circle | OPEN WHATSAPP | Arrow */}
               <a
                 href={WHATSAPP_BASE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="jc-whatsapp-btn w-full flex flex-row items-center gap-[14px] rounded-2xl text-white shadow-md transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D]"
-                style={{ minHeight: "56px", padding: "14px 18px" }}
+                className="jc-whatsapp-btn w-full flex items-center justify-between gap-3.5 rounded-2xl text-white shadow-md transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D] group"
+                style={{ minHeight: "56px", padding: "10px 18px" }}
               >
-                {/* 1. Icon circle */}
-                <span
-                  className="flex-shrink-0 flex items-center justify-center rounded-full"
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    background: "rgba(255,255,255,0.18)",
-                  }}
-                >
-                  <MessageCircle style={{ width: "22px", height: "22px", color: "#fff" }} />
-                </span>
-
-                {/* 2. Two-line text block */}
-                <span className="flex flex-col items-start flex-1 min-w-0">
+                {/* 1. Icon circle + Label */}
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <span
+                    className="flex-shrink-0 flex items-center justify-center rounded-full"
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "rgba(255,255,255,0.18)",
+                    }}
+                  >
+                    <MessageCircle style={{ width: "22px", height: "22px", color: "#fff" }} />
+                  </span>
                   <span
                     style={{
-                      fontSize: "11px",
+                      fontSize: "13px",
                       textTransform: "uppercase",
-                      letterSpacing: "0.1em",
-                      fontWeight: 400,
+                      letterSpacing: "0.12em",
+                      fontWeight: 600,
                       color: "#fff",
-                      lineHeight: 1.2,
+                      whiteSpace: "nowrap",
                     }}
                   >
                     OPEN WHATSAPP
                   </span>
-                  <span
-                    style={{
-                      fontSize: "17px",
-                      fontWeight: 500,
-                      color: "#fff",
-                      whiteSpace: "nowrap",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {WHATSAPP_DISPLAY_NUMBER}
-                  </span>
-                </span>
+                </div>
 
-                {/* 3. Arrow right */}
+                {/* 2. Arrow right */}
                 <ArrowRight
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1"
                   style={{ width: "20px", height: "20px", color: "#fff" }}
                 />
               </a>
@@ -147,7 +134,7 @@ export default function ContactPage() {
                   <Phone className="w-4 h-4 text-[#641526] flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-[#25211F]">Telephone & WhatsApp:</strong>
-                    <a href="tel:+233547631900" className="hover:text-[#641526] underline">
+                    <a href={`tel:+${WHATSAPP_PHONE_NUMBER}`} className="hover:text-[#641526] underline">
                       {WHATSAPP_DISPLAY_NUMBER}
                     </a>
                   </div>

@@ -1,7 +1,7 @@
 import { CartItem, Product } from "./types";
 
-export const WHATSAPP_PHONE_NUMBER = "233547631900";
-export const WHATSAPP_DISPLAY_NUMBER = "+233 54 763 1900";
+export const WHATSAPP_PHONE_NUMBER = "233245317117";
+export const WHATSAPP_DISPLAY_NUMBER = "+233 24 531 7117";
 export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_PHONE_NUMBER}`;
 
 /**

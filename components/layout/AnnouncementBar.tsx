@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
-import { WHATSAPP_BASE_URL } from "@/lib/whatsapp";
+import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY_NUMBER } from "@/lib/whatsapp";
 
 export function AnnouncementBar() {
   return (
@@ -23,7 +23,7 @@ export function AnnouncementBar() {
           >
             <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
             <span className="hidden sm:inline">WhatsApp Concierge:</span>
-            <span className="font-medium underline underline-offset-2">+233 54 763 1900</span>
+            <span className="font-medium underline underline-offset-2">{WHATSAPP_DISPLAY_NUMBER}</span>
           </Link>
         </div>
       </div>

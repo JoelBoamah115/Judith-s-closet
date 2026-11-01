@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, MessageCircle, Eye, ShoppingBag } from "lucide-react";
+import { Heart, MessageCircle, Eye, ShoppingBag, Check } from "lucide-react";
 import { Product } from "@/lib/types";
 import { useShop } from "@/context/ShopContext";
 import { formatGHS } from "@/lib/utils";
@@ -17,11 +17,38 @@ interface ProductCardProps {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const { isInWishlist, toggleWishlist, setQuickViewProduct, addToCart } = useShop();
   const [isHovered, setIsHovered] = useState(false);
-  const inWishlist = isInWishlist(product.id);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isAdded, setIsAdded] = useState(false);
+  const [showSizePrompt, setShowSizePrompt] = useState(false);
 
-  const defaultSize = product.sizes[0] || "M";
+  const inWishlist = isInWishlist(product.id);
+  const defaultSize = selectedSize || product.sizes[0] || "M";
   const defaultColor = product.colors?.[0]?.name;
   const whatsappUrl = createSingleProductWhatsAppUrl(product, defaultSize, defaultColor);
+
+  const handleMobileAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // If size is required and product has multiple sizes, prompt customer
+    if (!selectedSize && product.sizes.length > 1) {
+      if (showSizePrompt) {
+        // Tapped again while prompt active: open Quick View for detailed selection
+        setQuickViewProduct(product);
+        setShowSizePrompt(false);
+        return;
+      }
+      setShowSizePrompt(true);
+      setTimeout(() => setShowSizePrompt(false), 2400);
+      return;
+    }
+
+    const sizeToAdd = selectedSize || product.sizes[0] || "M";
+    addToCart(product, sizeToAdd, defaultColor);
+    setIsAdded(true);
+    setShowSizePrompt(false);
+    setTimeout(() => setIsAdded(false), 1800);
+  };
 
   return (
     <div
@@ -96,34 +123,93 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       {/* Content details */}
       <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
+          {/* 1. Category information */}
           <div className="flex items-center justify-between text-[11px] text-[#80664E] uppercase tracking-wider font-semibold mb-1">
             <span>{product.category}</span>
             <span>{product.subCategory}</span>
           </div>
 
+          {/* 2. Mobile Only: Add to Bag button (placed immediately below category and above name) */}
+          <div className="sm:hidden my-2">
+            <button
+              type="button"
+              onClick={handleMobileAddToCart}
+              className={`w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] ${
+                isAdded
+                  ? "bg-[#167A43] text-white shadow-sm"
+                  : showSizePrompt
+                  ? "bg-[#641526] text-white shadow-sm animate-pulse"
+                  : "bg-[#25211F] hover:bg-[#641526] text-[#F8F5F0] shadow-sm"
+              }`}
+              aria-label={`Add ${product.name} to bag`}
+            >
+              {isAdded ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-white" />
+                  <span className="text-[11px] tracking-widest">Added to Bag</span>
+                </>
+              ) : showSizePrompt ? (
+                <>
+                  <span className="text-[10px] tracking-widest font-bold">Select Size Below ↓</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <span className="text-[11px] tracking-widest">Add to Bag</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* 3. Product name */}
           <Link href={`/product/${product.slug}`} className="block group/title">
             <h3 className="font-serif text-base font-semibold text-[#25211F] group-hover/title:text-[#641526] transition-colors line-clamp-1">
               {product.name}
             </h3>
           </Link>
 
-          {/* Sizes available pills */}
+          {/* 4. Available sizes */}
           <div className="mt-2 flex items-center gap-1 flex-wrap">
             <span className="text-[10px] text-[#80664E] uppercase tracking-wider mr-1">Sizes:</span>
             {product.sizes.slice(0, 4).map((s) => (
-              <span
+              <button
+                type="button"
                 key={s}
-                className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-[#F4EFE7] text-[#25211F]"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setSelectedSize(s);
+                  setShowSizePrompt(false);
+                }}
+                className={`text-[10px] font-medium px-2 py-0.5 rounded transition-all ${
+                  selectedSize === s
+                    ? "bg-[#641526] text-white shadow-xs font-semibold"
+                    : showSizePrompt
+                    ? "bg-[#F4EFE7] text-[#25211F] ring-1 ring-[#641526]"
+                    : "bg-[#F4EFE7] text-[#25211F] hover:bg-[#E8DFD2]"
+                }`}
+                aria-label={`Select size ${s}`}
               >
                 {s}
-              </span>
+              </button>
             ))}
             {product.sizes.length > 4 && (
-              <span className="text-[10px] text-[#80664E]">+{product.sizes.length - 4}</span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setQuickViewProduct(product);
+                }}
+                className="text-[10px] text-[#80664E] hover:text-[#641526] underline ml-0.5"
+              >
+                +{product.sizes.length - 4}
+              </button>
             )}
           </div>
         </div>
 
+        {/* 5. Product price and discount information + 6. Actions */}
         <div className="pt-4 border-t border-[#E8DFD2]/60 mt-4">
           <div className="flex items-baseline justify-between mb-3">
             <div className="flex items-baseline gap-2">

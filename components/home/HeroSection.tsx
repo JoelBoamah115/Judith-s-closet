@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { WHATSAPP_BASE_URL } from "@/lib/whatsapp";
+import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY_NUMBER } from "@/lib/whatsapp";
 
 // ─── Typewriter configuration ───────────────────────────────────────────────
 const PHRASE_1 = "Discover Your";
@@ -310,7 +310,7 @@ export function HeroSection() {
                   rel="noopener noreferrer"
                   className="underline font-semibold transition-colors hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#78172D] focus-visible:ring-offset-1 jc-hero-whatsapp-link"
                 >
-                  +233 54 763 1900
+                  {WHATSAPP_DISPLAY_NUMBER}
                 </Link>
               </p>
             </motion.div>
