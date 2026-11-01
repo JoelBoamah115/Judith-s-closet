@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Phone, MapPin, Mail, Clock, Send } from "lucide-react";
+import { MessageCircle, Phone, MapPin, Mail, Clock, Send, ArrowRight } from "lucide-react";
 import { WHATSAPP_BASE_URL, WHATSAPP_DISPLAY_NUMBER, createGeneralInquiryWhatsAppUrl } from "@/lib/whatsapp";
 
 export default function ContactPage() {
@@ -39,7 +39,7 @@ export default function ContactPage() {
           {/* Left: Contact Info & Direct WhatsApp Hotline */}
           <div className="lg:col-span-5 space-y-6">
             <div
-              className="p-8 rounded-3xl space-y-6"
+              className="p-5 sm:p-8 rounded-3xl space-y-6"
               style={{
                 backgroundColor: "#FFFFFF",
                 border: "1px solid #DCCABD",
@@ -70,24 +70,58 @@ export default function ContactPage() {
                 Our fastest channel for order placements, size confirmations, and immediate stock checks.
               </p>
 
-              {/* CTA button — deep WhatsApp green, white text */}
+              {/* CTA button — new layout: icon circle | two-line text | arrow */}
               <a
                 href={WHATSAPP_BASE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-[48px] py-3.5 px-4 rounded-2xl text-white shadow-md transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D] flex flex-col items-center justify-center text-center gap-1 jc-whatsapp-btn"
-                style={{ minHeight: "48px" }}
+                className="jc-whatsapp-btn w-full flex flex-row items-center gap-[14px] rounded-2xl text-white shadow-md transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#78172D]"
+                style={{ minHeight: "56px", padding: "14px 18px" }}
               >
-                <span className="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest">
-                  <MessageCircle className="w-[22px] h-[22px] flex-shrink-0" style={{ width: "22px", height: "22px" }} />
-                  <span>OPEN WHATSAPP</span>
-                </span>
+                {/* 1. Icon circle */}
                 <span
-                  className="text-xs sm:text-sm font-semibold tracking-wider"
-                  style={{ whiteSpace: "nowrap" }}
+                  className="flex-shrink-0 flex items-center justify-center rounded-full"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    background: "rgba(255,255,255,0.18)",
+                  }}
                 >
-                  {WHATSAPP_DISPLAY_NUMBER}
+                  <MessageCircle style={{ width: "22px", height: "22px", color: "#fff" }} />
                 </span>
+
+                {/* 2. Two-line text block */}
+                <span className="flex flex-col items-start flex-1 min-w-0">
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      fontWeight: 400,
+                      color: "#fff",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    OPEN WHATSAPP
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "17px",
+                      fontWeight: 500,
+                      color: "#fff",
+                      whiteSpace: "nowrap",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {WHATSAPP_DISPLAY_NUMBER}
+                  </span>
+                </span>
+
+                {/* 3. Arrow right */}
+                <ArrowRight
+                  className="flex-shrink-0"
+                  style={{ width: "20px", height: "20px", color: "#fff" }}
+                />
               </a>
 
               <style>{`
@@ -97,7 +131,7 @@ export default function ContactPage() {
             </div>
 
             {/* Location & Details Card */}
-            <div className="p-8 rounded-3xl bg-white border border-[#E8DFD2] space-y-5 shadow-sm">
+            <div className="p-5 sm:p-8 rounded-3xl bg-white border border-[#E8DFD2] space-y-5 shadow-sm">
               <h4 className="font-serif text-lg font-semibold text-[#25211F]">
                 Studio & Consultation Details
               </h4>
@@ -137,7 +171,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right: Prefilled Inquiry Form that directly launches WhatsApp */}
-          <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-[#E8DFD2] shadow-sm space-y-6">
+          <div className="lg:col-span-7 bg-white p-5 sm:p-10 rounded-3xl border border-[#E8DFD2] shadow-sm space-y-6">
             <div>
               <span className="text-xs uppercase tracking-widest text-[#80664E] font-semibold">
                 Direct Inquiry Form

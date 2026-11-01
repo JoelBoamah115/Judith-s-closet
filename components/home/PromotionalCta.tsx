@@ -26,10 +26,12 @@ export function PromotionalCta() {
             href={WHATSAPP_BASE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm uppercase tracking-widest font-semibold shadow-lg hover:shadow-xl transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm uppercase tracking-widest font-semibold shadow-lg hover:shadow-xl transition-all text-center"
           >
-            <MessageCircle className="w-5 h-5" />
-            <span>Connect on WhatsApp: {WHATSAPP_DISPLAY_NUMBER}</span>
+            <MessageCircle className="w-5 h-5 flex-shrink-0" />
+            <span>
+              Connect on WhatsApp: <span className="whitespace-nowrap">{WHATSAPP_DISPLAY_NUMBER}</span>
+            </span>
           </a>
 
           <Link

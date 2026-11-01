@@ -44,6 +44,20 @@ export function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  // Lock background scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const origBodyOverflow = document.body.style.overflow;
+      const origHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = origBodyOverflow;
+        document.documentElement.style.overflow = origHtmlOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header
@@ -94,12 +108,12 @@ export function Navbar() {
             </nav>
 
             {/* Action Utilities & WhatsApp Button */}
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-3">
               {/* Search Icon */}
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
+                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
                 aria-label="Search catalog"
               >
                 <Search className="w-5 h-5" />
@@ -108,7 +122,7 @@ export function Navbar() {
               {/* Wishlist Icon */}
               <Link
                 href="/wishlist"
-                className="p-2 text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
+                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
                 aria-label={`Wishlist (${wishlist.length} items)`}
               >
                 <Heart className="w-5 h-5" />
@@ -123,7 +137,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsCartOpen(true)}
-                className="p-2 text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
+                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-[#25211F] hover:text-[#641526] hover:bg-[#E8DFD2]/40 rounded-full transition-colors relative"
                 aria-label={`Shopping bag (${cartCount} items)`}
               >
                 <ShoppingBag className="w-5 h-5" />

@@ -37,10 +37,10 @@ export default function WomenPage() {
             From liquid champagne silk slip gowns and structured burgundy cape blazers to tailored wide-leg trousers and sculpted evening gowns.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
             <Link
               href="#women-catalog"
-              className="px-8 py-3.5 rounded-full bg-[#641526] hover:bg-[#7E1B31] text-white text-xs uppercase tracking-widest font-semibold transition-all shadow-md"
+              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#641526] hover:bg-[#7E1B31] text-white text-xs uppercase tracking-widest font-semibold transition-all shadow-md text-center"
             >
               Browse Women&apos;s Pieces ({womenProducts.length})
             </Link>
@@ -48,7 +48,7 @@ export default function WomenPage() {
               href={WHATSAPP_BASE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[#F8F5F0] text-xs uppercase tracking-widest font-semibold backdrop-blur-sm transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[#F8F5F0] text-xs uppercase tracking-widest font-semibold backdrop-blur-sm transition-all text-center"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
               <span>Personal Stylist WhatsApp</span>

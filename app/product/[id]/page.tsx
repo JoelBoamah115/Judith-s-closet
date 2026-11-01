@@ -53,23 +53,23 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#80664E]">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-[#80664E]">
           <Link href="/" className="hover:text-[#641526] transition-colors">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2]" />
+          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2] flex-shrink-0" />
           <Link href="/shop" className="hover:text-[#641526] transition-colors">
             Shop
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2]" />
+          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2] flex-shrink-0" />
           <Link
             href={`/${product.category}`}
             className="hover:text-[#641526] uppercase transition-colors"
           >
             {product.category}
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2]" />
-          <span className="text-[#25211F] font-medium truncate max-w-xs">{product.name}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#E8DFD2] flex-shrink-0" />
+          <span className="text-[#25211F] font-medium truncate max-w-[200px] sm:max-w-xs">{product.name}</span>
         </nav>
 
         {/* Main Product Presentation Grid */}
@@ -308,11 +308,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
             {/* Specification Tabs */}
             <div className="pt-4 border-t border-[#E8DFD2]">
-              <div className="flex border-b border-[#E8DFD2] text-xs font-semibold uppercase tracking-wider">
+              <div className="flex border-b border-[#E8DFD2] text-xs font-semibold uppercase tracking-wider overflow-x-auto scrollbar-none">
                 <button
                   type="button"
                   onClick={() => setActiveTab("details")}
-                  className={`pb-2.5 px-3 transition-colors relative ${
+                  className={`pb-2.5 px-3 transition-colors relative whitespace-nowrap flex-shrink-0 ${
                     activeTab === "details"
                       ? "text-[#641526]"
                       : "text-[#80664E] hover:text-[#25211F]"
@@ -326,7 +326,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <button
                   type="button"
                   onClick={() => setActiveTab("fabric")}
-                  className={`pb-2.5 px-3 transition-colors relative ${
+                  className={`pb-2.5 px-3 transition-colors relative whitespace-nowrap flex-shrink-0 ${
                     activeTab === "fabric"
                       ? "text-[#641526]"
                       : "text-[#80664E] hover:text-[#25211F]"
@@ -340,7 +340,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <button
                   type="button"
                   onClick={() => setActiveTab("shipping")}
-                  className={`pb-2.5 px-3 transition-colors relative ${
+                  className={`pb-2.5 px-3 transition-colors relative whitespace-nowrap flex-shrink-0 ${
                     activeTab === "shipping"
                       ? "text-[#641526]"
                       : "text-[#80664E] hover:text-[#25211F]"

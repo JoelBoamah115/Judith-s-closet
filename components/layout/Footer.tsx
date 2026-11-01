@@ -8,13 +8,13 @@ export function Footer() {
           <p>
             &copy; {new Date().getFullYear()} Judith&apos;s Closet. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-center">
             <span className="text-[#C5A059]/90 font-medium">Demo Presentation Edition</span>
-            <span className="text-[#E8DFD2]/40">•</span>
+            <span className="text-[#E8DFD2]/40 hidden sm:inline">•</span>
             <Link href="/about" className="hover:text-white transition-colors">
               Brand Story
             </Link>
-            <span className="text-[#E8DFD2]/40">•</span>
+            <span className="text-[#E8DFD2]/40 hidden sm:inline">•</span>
             <Link href="/contact" className="hover:text-white transition-colors">
               Concierge
             </Link>

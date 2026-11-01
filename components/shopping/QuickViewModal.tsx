@@ -25,6 +25,20 @@ export function QuickViewModal() {
     }
   }, [quickViewProduct]);
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (quickViewProduct) {
+      const origBodyOverflow = document.body.style.overflow;
+      const origHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = origBodyOverflow;
+        document.documentElement.style.overflow = origHtmlOverflow;
+      };
+    }
+  }, [quickViewProduct]);
+
   if (!quickViewProduct) return null;
 
   const inWishlist = isInWishlist(quickViewProduct.id);
@@ -41,20 +55,20 @@ export function QuickViewModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain" role="dialog" aria-modal="true">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
         onClick={() => setQuickViewProduct(null)}
       />
 
-      <div className="min-h-full flex items-center justify-center p-4 sm:p-6 text-center">
-        <div className="relative bg-[#FAF8F5] rounded-2xl max-w-3xl w-full text-left overflow-hidden shadow-2xl border border-[#E8DFD2] animate-in zoom-in-95 duration-200">
+      <div className="min-h-full flex items-stretch sm:items-center justify-center p-0 sm:p-6 text-center">
+        <div className="relative bg-[#FAF8F5] rounded-none sm:rounded-2xl max-w-3xl w-full min-h-screen min-h-[100dvh] sm:min-h-0 text-left overflow-hidden shadow-2xl border-0 sm:border sm:border-[#E8DFD2] animate-in zoom-in-95 duration-200">
           {/* Close button */}
           <button
             type="button"
             onClick={() => setQuickViewProduct(null)}
-            className="absolute top-4 right-4 z-10 p-2 text-[#25211F]/70 hover:text-[#25211F] bg-white/80 hover:bg-white rounded-full shadow-sm transition-all"
+            className="fixed sm:absolute top-4 right-4 z-30 sm:z-10 p-2 text-[#25211F]/70 hover:text-[#25211F] bg-white/90 hover:bg-white rounded-full shadow-md transition-all"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />

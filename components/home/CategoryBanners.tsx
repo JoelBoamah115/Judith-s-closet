@@ -1,4 +1,3 @@
-import Link from "next/image";
 import Image from "next/image";
 import NextLink from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -24,7 +23,7 @@ export function CategoryBanners() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           
           {/* Men's Collection Card */}
-          <div className="group relative h-[480px] sm:h-[560px] rounded-3xl overflow-hidden shadow-lg border border-[#E8DFD2] flex flex-col justify-end p-8 sm:p-12">
+          <div className="group relative h-[440px] sm:h-[520px] md:h-[560px] rounded-3xl overflow-hidden shadow-lg border border-[#E8DFD2] flex flex-col justify-end p-6 sm:p-10 md:p-12">
             <Image
               src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop"
               alt="Judith's Closet Men's Collection"
@@ -58,7 +57,7 @@ export function CategoryBanners() {
           </div>
 
           {/* Women's Collection Card */}
-          <div className="group relative h-[480px] sm:h-[560px] rounded-3xl overflow-hidden shadow-lg border border-[#E8DFD2] flex flex-col justify-end p-8 sm:p-12">
+          <div className="group relative h-[440px] sm:h-[520px] md:h-[560px] rounded-3xl overflow-hidden shadow-lg border border-[#E8DFD2] flex flex-col justify-end p-6 sm:p-10 md:p-12">
             <Image
               src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1200&auto=format&fit=crop"
               alt="Judith's Closet Women's Collection"

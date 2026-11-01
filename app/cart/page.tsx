@@ -99,7 +99,7 @@ export default function CartPage() {
                         </button>
                       </div>
 
-                      <div className="flex items-center gap-4 text-xs text-[#80664E] mt-2">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#80664E] mt-2">
                         <span>Selected Size: <strong className="text-[#25211F]">{item.selectedSize}</strong></span>
                         {item.selectedColor && (
                           <span>Color: <strong className="text-[#25211F]">{item.selectedColor}</strong></span>

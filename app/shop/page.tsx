@@ -99,12 +99,12 @@ export default function ShopPage() {
             </div>
 
             {/* Sort Select */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-1 sm:flex-initial">
               <SlidersHorizontal className="w-4 h-4 text-[#80664E] flex-shrink-0" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="text-xs bg-[#FAF8F5] border border-[#E8DFD2] rounded-full px-3 py-2 text-[#25211F] focus:outline-none focus:border-[#641526]"
+                className="w-full sm:w-auto text-xs bg-[#FAF8F5] border border-[#E8DFD2] rounded-full px-3 py-2 text-[#25211F] focus:outline-none focus:border-[#641526]"
               >
                 <option value="featured">Featured Curations</option>
                 <option value="newest">New Arrivals First</option>
@@ -116,7 +116,7 @@ export default function ShopPage() {
         </div>
 
         {/* Results Counter & Demo Notice */}
-        <div className="flex items-center justify-between text-xs text-[#80664E] px-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#80664E] px-1 gap-1 sm:gap-0">
           <span>
             Showing <strong className="text-[#25211F]">{filteredProducts.length}</strong> styles
           </span>

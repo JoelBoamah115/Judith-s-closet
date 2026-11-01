@@ -34,7 +34,7 @@ export function BrandStory() {
               </div>
 
               {/* Monogram accent tag */}
-              <div className="absolute -top-4 -left-4 bg-[#641526] text-white py-3 px-4 rounded-2xl shadow-xl flex items-center">
+              <div className="absolute top-3 left-3 sm:-top-4 sm:-left-4 bg-[#641526] text-white py-3 px-4 rounded-2xl shadow-xl flex items-center">
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-[#E8DFD2] font-semibold">Judith&apos;s Closet</p>
                   <p className="font-serif text-xs font-medium">Bespoke Elegance</p>
